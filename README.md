@@ -9,9 +9,9 @@ Supports multiple sign-in methods including **Google** and **Facebook**.
 ## 🚀 Features
 - Clean and responsive UI with Angular Material.
 - User registration with:
-  - Email & Password
-  - Google Authentication
-  - Facebook Authentication
+- Email & Password
+- Google Authentication
+- Facebook Authentication
 - Firebase backend for authentication.
 - Deployed on **Vercel**.
 
@@ -24,7 +24,7 @@ Supports multiple sign-in methods including **Google** and **Facebook**.
 
 
 ## 🔗 Live Demo
-👉 [View on Vercel](https://your-vercel-link.vercel.app)
+👉 register-form-6b6a.vercel.app
 
 
 ## 📸 Screenshots
