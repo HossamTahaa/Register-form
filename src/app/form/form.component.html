@@ -1,0 +1,58 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-4 shadow rounded bg-light" style="max-width: 500px; margin: auto;">
+<h2 class="text-center mb-4 text-dark bg-light p-2">Register</h2>
+
+  <div *ngFor="let field of fieldConfigs" class="mb-1">
+  <label [for]="field.accessor" class="form-label">{{ field.label || (field.accessor | titlecase) }}</label>
+
+    <!-- Render select if field.type is 'select' -->
+    <ng-container [ngSwitch]="field.type">
+      <select
+        *ngSwitchCase="'select'"
+        class="form-select"
+        [formControlName]="field.accessor"
+         [disabled]="field.disabled || false"
+      >
+        <option value="">Select {{ field.label || field.accessor }}</option>
+        <option *ngFor="let option of field.options" [value]="option.value">
+          {{ option.label }}
+        </option>
+      </select>
+
+      <!--Render input -->
+      <input
+        *ngSwitchDefault
+        class="form-control"
+        [type]="field.type || 'text'"
+        [formControlName]="field.accessor"
+        [id]="field.accessor"
+        [disabled]="field.disabled || false"
+      />
+    </ng-container>
+
+    <div *ngIf="form.get(field.accessor)?.invalid && form.get(field.accessor)?.touched" class="form-text text-danger">
+      <small *ngIf="form.get(field.accessor)?.errors?.['required']">This field is required</small>
+      <small *ngIf="form.get(field.accessor)?.errors?.['email']">Invalid email</small>
+      <small *ngIf="form.get(field.accessor)?.errors?.['emailOrPhone']">Please enter a valid email or phone number</small>
+      <small *ngIf="form.get(field.accessor)?.errors?.['minlength']">
+        Min length is {{ form.get(field.accessor)?.errors?.['minlength'].requiredLength }}
+      </small>
+      
+    </div>
+  </div>
+
+  <button class="btn btn-primary w-100" type="submit" [disabled]="form.invalid">Submit</button>
+</form>
+
+<div class="text-center mt-3">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <button class="btn btn-danger" type="button" (click)="loginWithGoogle()">
+    <i class="bi bi-google"></i> Login with Google
+  </button>
+   <button class="btn btn-primary" (click)="loginWithFacebook()">
+    <i class="bi bi-facebook"></i> Login with Facebook
+  </button>
+</div>
+<div class="text-center mt-3">
+ 
+</div>
